@@ -1,0 +1,70 @@
+---
+title: "kernel regression"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(magrittr)
+source("../R/kernel_functions.R")
+source("../R/kernel_regression_class.R")
+```
+
+
+```{r}
+# Exponential data
+x = as.matrix(seq(0, 2, length=200))
+get_exp_data <- function(x) exp(1.5*x-1)
+exp_data = get_exp_data(x)
+
+# Noise
+noise = rnorm(x, mean=0, sd = 0.64)
+
+y = exp_data + noise
+
+x = data.frame(x)
+y = data.frame(y)
+
+kr1 = kernel_regression(x, y)
+kr1$plot()
+kr1$set_kernel("poly", b=2)
+kr1$plot()
+```
+
+```{r}
+# Apple stock data
+aapl_data = read.csv("../data/apple_stock_data.csv")
+aapl_data %<>% select(c(date, adjusted))
+
+x_df = data.frame(aapl_data$date)
+y_df = data.frame(aapl_data$adjusted)
+kr2 = kernel_regression(x_df, y_df, kernel="RBF", x_date=TRUE)
+kr2$plot()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
