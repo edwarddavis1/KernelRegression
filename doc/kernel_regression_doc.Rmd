@@ -17,6 +17,9 @@ source("../R/kernel_functions.R")
 source("../R/kernel_regression_class.R")
 ```
 
+Link to package GitHub: https://github.com/edwarddavis1/KernelRegression
+
+
 ## The Kernel Regression 
 
 The most simple form of regression is the least squares (LS) regression. This finds a regression model, $f(\mathbf{x}, \mathbf{w})$ by finding an optimal value for a weights vector, $w_{LS}$, which weights feature vectors in some input space feature transform, $\mathbf{\phi(X)}$, such that the difference between the model and the output, $\mathbf{y}$ is minimised. This optimal value has the solution,
